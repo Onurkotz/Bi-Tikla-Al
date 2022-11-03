@@ -1,13 +1,7 @@
 import React from "react";
-import Navigation from "../Navigation/Navigation";
 
 function Register() {
-  return (
-    <div>
-      <Navigation />
-      Register
-    </div>
-  );
+  return <div>Register</div>;
 }
 
 export default Register;

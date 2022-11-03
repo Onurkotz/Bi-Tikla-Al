@@ -1,12 +1,7 @@
-import React from 'react';
-import Navigation from "../Navigation/Navigation"
+import React from "react";
 
 function About() {
-  return (
-    <div>
-      <Navigation />
-      Bi Tıkla Gelsin E-Ticaret Markası</div>
-  )
+  return <div>Bi Tıkla Gelsin E-Ticaret Markası</div>;
 }
 
-export default About
+export default About;
