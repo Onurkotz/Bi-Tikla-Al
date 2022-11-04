@@ -1,7 +1,7 @@
 import mongoose from 'mongoose';
 
 mongoose
-  .connect(process.env.MONGO_URI, {
+  .connect("mongodb://127.0.0.1/test", {
     useNewUrlParser: true,
     useUnifiedTopology: true,
     useCreateIndex: true,

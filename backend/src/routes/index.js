@@ -15,7 +15,7 @@ router.get('/', (req, res) => {
 });
 
 router.use('/auth', auth);
-router.use('/product', product);
+router.use('/products', product);
 router.use('/order', verifyAccessToken, order);
 
 export default router;
