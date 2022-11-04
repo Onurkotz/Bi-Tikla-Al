@@ -22,7 +22,9 @@ function Navigation() {
           </ul>
         </nav>
       </div>
-      <div className="nav-center">Bi Tıkla Al</div>
+      <div className="nav-center">
+        <img src="../../../public/logo.png" alt="logo" /> 
+      </div>
       <div className="nav-right">
         <Stack direction="row" spacing={2} align="center">
           <Link to="/login">
