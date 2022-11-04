@@ -11,10 +11,13 @@ function Navigation() {
         <nav>
           <ul>
             <li>
-              <Link to="/">Home</Link>
+              <Link to="/">Anasayfa</Link>
             </li>
             <li>
-              <Link to="/about">About</Link>
+              <Link to="/about">Hakkımızda</Link>
+            </li>
+            <li>
+              <Link to="/products">Ürünlerimiz</Link>
             </li>
           </ul>
         </nav>

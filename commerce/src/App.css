@@ -4,11 +4,12 @@
   background-color: rgb(124, 236, 124);
   display: flex;
   align-items: center;
-  justify-content:space-around;
+  justify-content:space-between;
   margin-top: 15px;
 }
 .nav-left {
   display: flex;
+  margin-left: 100px
 }
 .nav-left > nav > ul > li > a {
   text-decoration: none;
@@ -26,7 +27,9 @@
 
 .nav-right {
   display: flex;
+  margin-right: 100px;
 }
+
 .nav-right > a {
   color: black;
   margin-right: 10px;
