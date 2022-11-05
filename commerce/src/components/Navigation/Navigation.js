@@ -1,6 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import { Button, Stack } from "@chakra-ui/react";
+import { Button, Stack, Image } from "@chakra-ui/react";
 
 import "../../App.css";
 
@@ -23,7 +23,12 @@ function Navigation() {
         </nav>
       </div>
       <div className="nav-center">
-        <img src="../../../public/logo.png" alt="logo" /> 
+        <Image
+          borderRadius="full"
+          boxSize="150px"
+          src="./logo.png"
+          alt="Logo"
+        />
       </div>
       <div className="nav-right">
         <Stack direction="row" spacing={2} align="center">
