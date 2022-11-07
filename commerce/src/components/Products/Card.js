@@ -6,7 +6,7 @@ import moment from "moment";
 function Card({ item }) {
   return (
     <Box bg="aqua" borderWidth="1px" borderRadius="lg" overflow="hidden" p="3">
-      <Link to="#">
+      <Link to={`/products/${item._id}`}>
         <Box d="flex" textAlign="center">
           <Box
             fontSize="22"
