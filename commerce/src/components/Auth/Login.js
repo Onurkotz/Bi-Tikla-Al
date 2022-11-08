@@ -59,6 +59,7 @@ function Login() {
                 w="full"
                 mt="5"
                 type="submit"
+                _focus={{ bg: "red" }}
               >
                 Giriş Yap
               </Button>

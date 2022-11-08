@@ -50,6 +50,7 @@ function Products() {
           onClick={() => fetchNextPage()}
           disabled={!hasNextPage || isFetchingNextPage}
           isLoading={isFetchingNextPage} // Yükleme çemberinin görünmesi için Chakra butonunda geliyor.
+          _focus={{ bg: "red" }}
         >
           {isFetchingNextPage
             ? "Yükleniyor"

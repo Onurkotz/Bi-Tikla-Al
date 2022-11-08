@@ -38,12 +38,20 @@ function Navigation() {
       <div className="nav-right">
         <Stack direction="row" spacing={2} align="center">
           <Link to="/auth/login">
-            <Button colorScheme="blue" _hover={{ bg: "red.300" }}>
+            <Button
+              colorScheme="blue"
+              _hover={{ bg: "red.300" }}
+              _focus={{ bg: "red" }}
+            >
               Giriş
             </Button>
           </Link>
           <Link to="/auth/register">
-            <Button colorScheme="red" _hover={{ bg: "red.300" }}>
+            <Button
+              colorScheme="red"
+              _hover={{ bg: "red.300" }}
+              _focus={{ bg: "red" }}
+            >
               Kaydol
             </Button>
           </Link>

@@ -8,9 +8,11 @@ import {
   Input,
   Divider,
   Button,
+  Alert
 } from "@chakra-ui/react";
 import { useFormik } from "formik";
 import validationSchema from "./validations";
+import { userRegister } from "../../api";
 
 function Register() {
   const formik = useFormik({
@@ -21,7 +23,15 @@ function Register() {
     },
     validationSchema,
     onSubmit: async (values, bag) => {
-      console.log(values);
+      try {
+        const responseRegister = await userRegister({
+          email: values.email,
+          password: values.password,
+        });
+        console.log(responseRegister);
+      } catch (error) {
+        bag.setErrors({ general: error.response.data.message });
+      }
     },
   });
 
@@ -33,6 +43,11 @@ function Register() {
             <Heading>Kaydol</Heading>
           </Box>
           <Divider mt="5" mb="5" />
+          <Box my={5}>
+						{formik.errors.general && (
+							<Alert status="error">{formik.errors.general}</Alert>
+						)}
+					</Box>
           <Box align="center">
             <form onSubmit={formik.handleSubmit}>
               <FormControl>
@@ -42,6 +57,7 @@ function Register() {
                   onChange={formik.handleChange}
                   onBlur={formik.handleBlur}
                   value={formik.values.email}
+                  isInvalid={formik.touched.email && formik.errors.email}
                 />
               </FormControl>
               <FormControl mt="5">
@@ -52,6 +68,7 @@ function Register() {
                   onChange={formik.handleChange}
                   onBlur={formik.handleBlur}
                   value={formik.values.password}
+                  isInvalid={formik.touched.password && formik.errors.password} //Bu satır hata alındığında formik'in onu yakalayıp kullanıcıyı uyarması için.
                 />
               </FormControl>
               <FormControl mt="5">
@@ -62,6 +79,10 @@ function Register() {
                   onChange={formik.handleChange}
                   onBlur={formik.handleBlur}
                   value={formik.values.passwordConfirm}
+                  isInvalid={
+                    formik.touched.passwordConfirm &&
+                    formik.errors.passwordConfirm
+                  }
                 />
               </FormControl>
               <Button
@@ -70,6 +91,7 @@ function Register() {
                 w="full"
                 mt="5"
                 type="submit"
+                _focus={{ bg: "red" }}
               >
                 Kaydol
               </Button>
