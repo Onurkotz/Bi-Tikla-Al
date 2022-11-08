@@ -15,7 +15,7 @@ function Products() {
     status,
   } = useInfiniteQuery("products", getAllProducts, {
     getNextPageParam: (lastPage, pages) => {
-      const morePage = lastPage?.length === 12;
+      const morePage = lastPage?.length === 6;
       if (!morePage) {
         return;
       }
@@ -45,6 +45,8 @@ function Products() {
 
       <Flex mt="10" mb="20" justifyContent="center">
         <Button
+          bg="#42ec6b"
+          _hover={{ bg: "red.300" }}
           onClick={() => fetchNextPage()}
           disabled={!hasNextPage || isFetchingNextPage}
           isLoading={isFetchingNextPage} // Yükleme çemberinin görünmesi için Chakra butonunda geliyor.

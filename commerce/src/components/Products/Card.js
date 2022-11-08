@@ -37,7 +37,7 @@ function Card({ item }) {
         <Box float="left">
           {moment(item.createdAt).locale("tr").format("DD.MM.YYYY")}
         </Box>
-        <Button bg="#42ec6b" float="right">
+        <Button _hover={{bg: "red.300"}} bg="#42ec6b" float="right">
           Sepete At
         </Button>
       </Box>

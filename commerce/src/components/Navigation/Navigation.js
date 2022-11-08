@@ -1,13 +1,16 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import { Button, Stack, Image, Box} from "@chakra-ui/react";
-import companyLogo from '../../companyLogo.png';
+import { Button, Stack, Image, Box } from "@chakra-ui/react";
+import companyLogo from "../../companyLogo.png";
 
 import "../../App.css";
 
 function Navigation() {
   return (
-    <Box className="nav" bgGradient='linear(to-r, red.400, blue.500, green.300)'>
+    <Box
+      className="nav"
+      bgGradient="linear(to-r, red.400, blue.500, green.300)"
+    >
       <div className="nav-left">
         <nav>
           <ul>
@@ -25,7 +28,7 @@ function Navigation() {
       </div>
       <div className="nav-center">
         <Image
-        objectFit='cover'
+          objectFit="cover"
           mr="10"
           boxSize="400px"
           src={companyLogo}
@@ -34,13 +37,13 @@ function Navigation() {
       </div>
       <div className="nav-right">
         <Stack direction="row" spacing={2} align="center">
-          <Link to="/login">
-            <Button colorScheme="blue" variant="solid">
+          <Link to="/auth/login">
+            <Button colorScheme="blue" _hover={{ bg: "red.300" }}>
               Giriş
             </Button>
           </Link>
-          <Link to="/register">
-            <Button colorScheme="red" variant="solid">
+          <Link to="/auth/register">
+            <Button colorScheme="red" _hover={{ bg: "red.300" }}>
               Kaydol
             </Button>
           </Link>
