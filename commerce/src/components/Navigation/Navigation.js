@@ -1,12 +1,13 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import { Button, Stack, Image } from "@chakra-ui/react";
+import { Button, Stack, Image, Box} from "@chakra-ui/react";
+import companyLogo from '../../companyLogo.png';
 
 import "../../App.css";
 
 function Navigation() {
   return (
-    <div className="nav">
+    <Box className="nav" bgGradient='linear(to-r, red.400, blue.500, green.300)'>
       <div className="nav-left">
         <nav>
           <ul>
@@ -24,9 +25,10 @@ function Navigation() {
       </div>
       <div className="nav-center">
         <Image
-          borderRadius="full"
-          boxSize="150px"
-          src="./logo.png"
+        objectFit='cover'
+          mr="10"
+          boxSize="400px"
+          src={companyLogo}
           alt="Logo"
         />
       </div>
@@ -44,7 +46,7 @@ function Navigation() {
           </Link>
         </Stack>
       </div>
-    </div>
+    </Box>
   );
 }
 

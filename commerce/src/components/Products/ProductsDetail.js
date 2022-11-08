@@ -2,7 +2,10 @@ import React from "react";
 import { useQuery } from "react-query";
 import { product } from "../../api";
 import { useParams } from "react-router-dom";
-import { Grid, GridItem, Box, Image, Button, Text } from "@chakra-ui/react";
+import { Grid, GridItem, Button, Text } from "@chakra-ui/react";
+import ImageGallery from "react-image-gallery";
+
+import "../../App.css";
 
 function ProductsDetail() {
   const { id } = useParams();
@@ -13,19 +16,22 @@ function ProductsDetail() {
   if (isLoading) return "Loading...";
   if (error) return error;
   console.log(data);
+
+  const images = data.photos.map((url) => ({ original: url }));
   return (
     <div>
       <Grid
         h="800px"
         templateRows="repeat(3, 0fr)"
         templateColumns="repeat(5, 1fr)"
-        gap={1}
-        p="10"
+        gap={5}
+        pl="40"
+        pr="40"
+        mt="20"
       >
         <GridItem
           h="50px"
           colSpan={5}
-          bg="blue"
           display="flex"
           alignItems="center"
           justifyContent="space-between"
@@ -37,13 +43,29 @@ function ProductsDetail() {
             Sepete At
           </Button>
         </GridItem>
-        <GridItem h="600px" colSpan={3} bg="tomato">
-            
+        <GridItem h="850px" colSpan={3}>
+          <ImageGallery
+            items={images}
+            showThumbnails={false}
+            showPlayButton={false}
+          />
         </GridItem>
-        <GridItem h="600px" colSpan={2} bg="blue">
-            <Text fontWeight="semibold" textDecoration="underline" ml="3"  mt="3" fontSize="30px">Ürün Detayı</Text>
-            <Text ml="3" letterSpacing="tighter" mt="3" fontSize="20px">{data.description}</Text>
-            <Text fontWeight="bold" ml="3"  mt="10" fontSize="35px">{data.price} ₺</Text>
+        <GridItem h="600px" colSpan={2}>
+          <Text
+            fontWeight="semibold"
+            textDecoration="underline"
+            ml="3"
+            mt="3"
+            fontSize="30px"
+          >
+            Ürün Detayı
+          </Text>
+          <Text ml="3" letterSpacing="tighter" mt="3" fontSize="20px">
+            {data.description}
+          </Text>
+          <Text fontWeight="bold" ml="3" mt="10" fontSize="35px">
+            {data.price} ₺
+          </Text>
         </GridItem>
       </Grid>
     </div>
