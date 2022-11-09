@@ -1,6 +1,7 @@
 import React from "react";
 import { Grid, Button, Flex } from "@chakra-ui/react";
 import Card from "./Card";
+import Loading from "../Loading/Loading";
 import { useInfiniteQuery } from "react-query";
 import { getAllProducts } from "../../api";
 
@@ -22,7 +23,7 @@ function Products() {
       return pages.length + 1;
     },
   });
-  if (status === "loading") return "Loading...";
+  if (status === "loading") return <Loading />;
   if (status === "error") return error;
 
   return (

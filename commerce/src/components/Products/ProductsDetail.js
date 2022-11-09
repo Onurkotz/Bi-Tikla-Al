@@ -4,6 +4,7 @@ import { product } from "../../api";
 import { useParams } from "react-router-dom";
 import { Grid, GridItem, Button, Text } from "@chakra-ui/react";
 import ImageGallery from "react-image-gallery";
+import Loading from "../Loading/Loading";
 
 import "../../App.css";
 
@@ -13,7 +14,7 @@ function ProductsDetail() {
   const { isLoading, error, data } = useQuery(["product", id], () =>
     product(id)
   );
-  if (isLoading) return "Loading...";
+  if (isLoading) return <Loading />;
   if (error) return error;
   console.log(data);
 
