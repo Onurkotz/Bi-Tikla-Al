@@ -8,7 +8,7 @@ const AuthProvider = ({ children }) => {
 
   const login = (data) => {
     setLoggedIn(true);
-    setUser(data);
+    setUser(data.user);
   };
 
   const values = {
@@ -22,3 +22,5 @@ const AuthProvider = ({ children }) => {
 const useAuth = () => useContext(AuthContext);
 
 export { AuthProvider, useAuth };
+
+// Yukarıda kullanıcı alındığında loggedIn true oluyor. Kullanıcı bilgileri de setUser fonk. ile ilgili componentlerde kullanılmak üzere user'a eşitleniyor.
