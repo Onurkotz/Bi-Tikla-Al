@@ -6,14 +6,16 @@ import App from "./App";
 import reportWebVitals from "./reportWebVitals";
 import { ChakraProvider } from "@chakra-ui/react";
 import { QueryClient, QueryClientProvider } from "react-query";
-import { ReactQueryDevtools } from 'react-query/devtools'
+import { ReactQueryDevtools } from "react-query/devtools";
+import { AuthProvider } from "./context/AuthContext";
 
 const queryClient = new QueryClient({
   defaultOptions: {
     queries: {
       refetchOnMount: false,
-      refetchOnWindowFocus: false,   }
-  }
+      refetchOnWindowFocus: false,
+    },
+  },
 });
 
 // Önbelleğe alınan kaydedilen verilerin başka bir route ya da sekmeye gidip gelindiğinde yeniden fetchlenmemesi için yukarıdaki parantezdeki ayarları yazdım. Bu fetch edilen verileri de görmek için react-query/devtools u import ettim.
@@ -23,7 +25,9 @@ root.render(
   <React.StrictMode>
     <QueryClientProvider client={queryClient}>
       <ChakraProvider>
-        <App />
+        <AuthProvider>
+          <App />
+        </AuthProvider>
       </ChakraProvider>
       <ReactQueryDevtools initialIsOpen={false} />
     </QueryClientProvider>
