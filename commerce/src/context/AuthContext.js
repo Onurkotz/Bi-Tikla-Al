@@ -1,5 +1,5 @@
 import { useState, useEffect, createContext, useContext } from "react";
-import { userIsMe } from "../api";
+import { userIsMe, userLogout } from "../api";
 import Loading from "../components/Loading/Loading";
 
 const AuthContext = createContext();
@@ -31,10 +31,21 @@ const AuthProvider = ({ children }) => {
     localStorage.setItem("refresh-token", data.refreshToken);
   };
 
+  const logout = async (cb) => {
+    setLoggedIn(false);
+    setUser(null);
+    await userLogout();
+    localStorage.removeItem("access-token");
+		localStorage.removeItem("refresh-token");
+    cb();
+    // Burada setLoggedIn ve setUser'ı başlangıç değerlerine çektim. api deki userLogout fonk. çalıştırdıktan ve çıkıştan sonra localdeki tokenları silmesini istedim. callback ise yönlendirme için yazdığım callback.
+  };
+
   const values = {
     user,
     loggedIn,
     login,
+    logout,
   };
 
   if (loading) {

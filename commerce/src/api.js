@@ -44,3 +44,11 @@ export const userIsMe = async (input) => {
   const { data } = await axios.get(`http://localhost:4000/auth/me`);
   return data;
 };
+
+export const userLogout = async () => {
+  const { data } = await axios.post(`http://localhost:4000/auth/logout`, {
+    refresh_token: localStorage.getItem("refresh-token"),
+  });
+  return data;
+  //Burada logout isteğini yolladıktan sonra gerekli işlem için gerekn refresh token 'ı da local storage den yolluyorum. bu fonksiyounu context dosyasına alıp tetikleyici fonk. olan logout içine yazıyorum.
+};

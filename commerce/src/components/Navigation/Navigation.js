@@ -1,14 +1,21 @@
 import React from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { Button, Stack, Image, Box } from "@chakra-ui/react";
 import companyLogo from "../../companyLogo.png";
-import { useAuth } from "../../context/AuthContext";
+import { useAuth} from "../../context/AuthContext";
 
 import "../../App.css";
 
 function Navigation() {
-  const { loggedIn } = useAuth();
-  console.log(loggedIn);
+  const { loggedIn, logout } = useAuth();
+  const navigate = useNavigate() // Bunu istediğim bir sayfaya yönlendirmesi için react-router-dom altından alıp kullandım.
+  
+const handleLogout = async () => {
+  logout(() => {
+    navigate("../")
+  })
+}
+
 
   return (
     <Box
@@ -76,6 +83,16 @@ function Navigation() {
                   Profile
                 </Button>
               </Link>
+              
+                <Button
+                  colorScheme="red"
+                  _hover={{ bg: "red.300" }}
+                  _focus={{ bg: "red" }}
+                  onClick={handleLogout}
+                >
+                  Çıkış
+                </Button>
+              
             </Stack>
           </>
         )}

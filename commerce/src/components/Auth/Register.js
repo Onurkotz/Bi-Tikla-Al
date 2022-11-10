@@ -1,4 +1,5 @@
 import React from "react";
+import {useNavigate} from "react-router-dom"
 import {
   Flex,
   Box,
@@ -16,7 +17,8 @@ import { userRegister } from "../../api";
 import {useAuth} from "../../context/AuthContext"
 
 function Register() {
-  const {login} = useAuth()
+  const {login} = useAuth();
+  const navigate = useNavigate();
   
   const formik = useFormik({
     initialValues: {
@@ -32,7 +34,8 @@ function Register() {
           password: values.password,
         });
         console.log(responseRegister);
-        login(responseRegister)
+        login(responseRegister);
+        navigate("../auth/profile")
       } catch (error) {
         bag.setErrors({ general: error.response.data.message });
       }
