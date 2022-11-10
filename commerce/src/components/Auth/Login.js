@@ -1,4 +1,5 @@
 import React from "react";
+import { useNavigate } from "react-router-dom";
 import {
   Flex,
   Box,
@@ -10,16 +11,32 @@ import {
   Button,
 } from "@chakra-ui/react";
 import { useFormik } from "formik";
+import { userLogin } from "../../api";
+import validationSchema from "./validationsLogin";
+import { useAuth } from "../../context/AuthContext";
 
 function Login() {
+  const navigate = useNavigate();
+  const { login } = useAuth();
+
   const formik = useFormik({
     initialValues: {
       email: "",
       password: "",
-      passwordConfirm: "",
     },
+    validationSchema,
     onSubmit: async (values, bag) => {
-      console.log(values);
+      try {
+        const responseLogin = await userLogin({
+          email: values.email,
+          password: values.password,
+        });
+        console.log(responseLogin);
+        login(responseLogin);
+        navigate("../auth/profile");
+      } catch (error) {
+        bag.setErrors({ general: error.response.data.message });
+      }
     },
   });
 
@@ -61,7 +78,7 @@ function Login() {
                 type="submit"
                 _focus={{ bg: "red" }}
               >
-                Giriş Yap
+                Giriş
               </Button>
             </form>
           </Box>
