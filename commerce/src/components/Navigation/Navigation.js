@@ -2,20 +2,21 @@ import React from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { Button, Stack, Image, Box } from "@chakra-ui/react";
 import companyLogo from "../../companyLogo.png";
-import { useAuth} from "../../context/AuthContext";
+import { useAuth } from "../../context/AuthContext";
+import { useBasket } from "../../context/BasketContext";
 
 import "../../App.css";
 
 function Navigation() {
   const { loggedIn, logout } = useAuth();
-  const navigate = useNavigate() // Bunu istediğim bir sayfaya yönlendirmesi için react-router-dom altından alıp kullandım.
-  
-const handleLogout = async () => {
-  logout(() => {
-    navigate("../")
-  })
-}
+  const { items } = useBasket();
+  const navigate = useNavigate(); // Bunu istediğim bir sayfaya yönlendirmesi için react-router-dom altından alıp kullandım.
 
+  const handleLogout = async () => {
+    logout(() => {
+      navigate("../");
+    });
+  };
 
   return (
     <Box
@@ -80,19 +81,28 @@ const handleLogout = async () => {
                   _hover={{ bg: "red.300" }}
                   _focus={{ bg: "red" }}
                 >
-                  Profile
+                  Profilim
                 </Button>
               </Link>
-              
+
+              <Link to="/auth/profile/basket">
                 <Button
-                  colorScheme="red"
+                  bg="#42ec6b"
                   _hover={{ bg: "red.300" }}
                   _focus={{ bg: "red" }}
-                  onClick={handleLogout}
                 >
-                  Çıkış
+                  {items.length > 0 ? `Sepetim (${items.length})` : "Sepetim"}
                 </Button>
-              
+              </Link>
+
+              <Button
+                colorScheme="red"
+                _hover={{ bg: "red.300" }}
+                _focus={{ bg: "red" }}
+                onClick={handleLogout}
+              >
+                Çıkış
+              </Button>
             </Stack>
           </>
         )}

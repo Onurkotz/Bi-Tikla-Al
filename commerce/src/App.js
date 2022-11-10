@@ -9,6 +9,7 @@ import ProductsDetail from "./components/Products/ProductsDetail";
 import Register from "./components/Auth/Register";
 import Login from "./components/Auth/Login";
 import Profile from "./components/Auth/Profile";
+import Basket from "./components/Auth/Basket"
 import ProtectedRoute from "./components/ProtectedRoute/ProtectedRoute"
 
 function App() {
@@ -25,6 +26,7 @@ function App() {
           <Route path="/auth/login" element={<Login />} />
           <Route element={<ProtectedRoute />}>
 						<Route path="/auth/profile" element={<Profile />} />
+            <Route path="/auth/profile/basket" element={<Basket />} />
 					</Route>
         </Routes>
       </Router>
