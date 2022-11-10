@@ -53,6 +53,7 @@ function Navigation() {
             <Stack direction="row" spacing={2} align="center">
               <Link to="/auth/login">
                 <Button
+                  w="120px"
                   colorScheme="blue"
                   _hover={{ bg: "red.300" }}
                   _focus={{ bg: "red" }}
@@ -62,6 +63,7 @@ function Navigation() {
               </Link>
               <Link to="/auth/register">
                 <Button
+                  w="120px"
                   colorScheme="red"
                   _hover={{ bg: "red.300" }}
                   _focus={{ bg: "red" }}
@@ -77,6 +79,7 @@ function Navigation() {
             <Stack direction="row" spacing={2} align="center">
               <Link to="/auth/profile">
                 <Button
+                  w="120px"
                   bg="#42ec6b"
                   _hover={{ bg: "red.300" }}
                   _focus={{ bg: "red" }}
@@ -87,6 +90,7 @@ function Navigation() {
 
               <Link to="/auth/profile/basket">
                 <Button
+                  w="120px"
                   bg="#42ec6b"
                   _hover={{ bg: "red.300" }}
                   _focus={{ bg: "red" }}

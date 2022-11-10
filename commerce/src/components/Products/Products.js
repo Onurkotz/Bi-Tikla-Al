@@ -46,6 +46,7 @@ function Products() {
 
       <Flex mt="10" mb="20" justifyContent="center">
         <Button
+          w="120px"
           bg="#42ec6b"
           _hover={{ bg: "red.300" }}
           onClick={() => fetchNextPage()}

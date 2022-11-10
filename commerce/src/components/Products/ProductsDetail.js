@@ -1,17 +1,18 @@
 import React from "react";
 import { useQuery } from "react-query";
 import { product } from "../../api";
-import { useParams } from "react-router-dom";
+import { useParams, Link } from "react-router-dom";
 import { Grid, GridItem, Button, Text } from "@chakra-ui/react";
 import ImageGallery from "react-image-gallery";
 import Loading from "../Loading/Loading";
 import { useBasket } from "../../context/BasketContext";
-
+import { useAuth } from "../../context/AuthContext";
 import "../../App.css";
 
 function ProductsDetail() {
   const { id } = useParams();
   const { addtoBasket, items } = useBasket();
+  const { loggedIn } = useAuth();
 
   const { isLoading, error, data } = useQuery(["product", id], () =>
     product(id)
@@ -44,14 +45,30 @@ function ProductsDetail() {
           <Text fontWeight="semibold" ml="3" fontSize="40px">
             {data.title}
           </Text>
-          <Button
-            mr="3"
-            bg={!hasItem ? "#42ec6b" : "purple.300"}
-            _hover={{ bg: "red.300" }}
-            onClick={() => addtoBasket(data, hasItem)}
-          >
-            {hasItem ? "Kaldır" : "Sepete At"}
-          </Button>
+          {loggedIn ? (
+            <Button
+              w="120px"
+              _hover={{ bg: "red.300" }}
+              bg={!hasItem ? "#42ec6b" : "purple.300"}
+              float="right"
+              onClick={() => {
+                addtoBasket(data, hasItem);
+              }}
+            >
+              {hasItem ? "Kaldır" : "Sepete At"}
+            </Button>
+          ) : (
+            <Link to="/auth/login">
+              <Button
+                w="120px"
+                _hover={{ bg: "red.300" }}
+                bg={!hasItem ? "#42ec6b" : "purple.300"}
+                float="right"
+              >
+                Sepete At
+              </Button>
+            </Link>
+          )}
         </GridItem>
         <GridItem h="850px" colSpan={3}>
           <ImageGallery

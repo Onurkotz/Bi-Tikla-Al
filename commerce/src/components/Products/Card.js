@@ -2,8 +2,15 @@ import React from "react";
 import { Box, Image, Button } from "@chakra-ui/react";
 import { Link } from "react-router-dom";
 import moment from "moment";
+import { useBasket } from "../../context/BasketContext";
+import { useAuth } from "../../context/AuthContext";
 
 function Card({ item }) {
+  const { addtoBasket, items } = useBasket();
+  const hasItem = items.find((data) => data._id === item._id);
+
+  const { loggedIn } = useAuth();
+
   return (
     <Box bg="aqua" borderWidth="1px" borderRadius="lg" overflow="hidden" p="3">
       <Link to={`/products/${item._id}`}>
@@ -37,14 +44,30 @@ function Card({ item }) {
         <Box float="left">
           {moment(item.createdAt).locale("tr").format("DD.MM.YYYY")}
         </Box>
-        <Button
-          _hover={{ bg: "red.300" }}
-          bg="#42ec6b"
-          float="right"
-          _focus={{ bg: "red" }}
-        >
-          Sepete At
-        </Button>
+        {loggedIn ? (
+          <Button
+            w="120px"
+            _hover={{ bg: "red.300" }}
+            bg={!hasItem ? "#42ec6b" : "purple.300"}
+            float="right"
+            onClick={() => {
+              addtoBasket(item, hasItem);
+            }}
+          >
+            {hasItem ? "Kaldır" : "Sepete At"}
+          </Button>
+        ) : (
+          <Link to="/auth/login">
+            <Button
+              w="120px"
+              _hover={{ bg: "red.300" }}
+              bg={!hasItem ? "#42ec6b" : "purple.300"}
+              float="right"
+            >
+              Sepete At
+            </Button>
+          </Link>
+        )}
       </Box>
     </Box>
   );
