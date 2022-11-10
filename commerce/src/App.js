@@ -9,12 +9,13 @@ import ProductsDetail from "./components/Products/ProductsDetail";
 import Register from "./components/Auth/Register";
 import Login from "./components/Auth/Login";
 import Profile from "./components/Auth/Profile";
+import ProtectedRoute from "./components/ProtectedRoute/ProtectedRoute"
 
 function App() {
   return (
     <div>
       <Router>
-        <Navigation />
+        <Navigation />  
         <Routes>
           <Route path="/" element={<Home />} exact />
           <Route path="/about" element={<About />} />
@@ -22,7 +23,9 @@ function App() {
           <Route path="/products/:id" element={<ProductsDetail />} />
           <Route path="/auth/register" element={<Register />} />
           <Route path="/auth/login" element={<Login />} />
-          <Route path="/auth/profile" element={<Profile />} />
+          <Route element={<ProtectedRoute />}>
+						<Route path="/auth/profile" element={<Profile />} />
+					</Route>
         </Routes>
       </Router>
     </div>
