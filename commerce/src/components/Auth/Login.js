@@ -9,7 +9,7 @@ import {
   Input,
   Divider,
   Button,
-  Alert
+  Alert,
 } from "@chakra-ui/react";
 import { useFormik } from "formik";
 import { userLogin } from "../../api";
@@ -49,11 +49,11 @@ function Login() {
             <Heading>Giriş Yap</Heading>
           </Box>
           <Divider mt="5" mb="5" />
-           <Box my={5}>
-						{formik.errors.general && (
-							<Alert status="error">{formik.errors.general}</Alert>
-						)}
-					</Box>
+          <Box my={5}>
+            {formik.errors.general && (
+              <Alert status="error">{formik.errors.general}</Alert>
+            )}
+          </Box>
           <Box align="center">
             <form onSubmit={formik.handleSubmit}>
               <FormControl>
@@ -95,4 +95,3 @@ function Login() {
 }
 
 export default Login;
-  

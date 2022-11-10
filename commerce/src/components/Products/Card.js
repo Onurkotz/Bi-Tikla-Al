@@ -61,7 +61,7 @@ function Card({ item }) {
             <Button
               w="120px"
               _hover={{ bg: "red.300" }}
-              bg={!hasItem ? "#42ec6b" : "purple.300"}
+              bg="#42ec6b"
               float="right"
             >
               Sepete At

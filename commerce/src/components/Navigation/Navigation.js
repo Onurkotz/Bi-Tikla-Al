@@ -30,10 +30,10 @@ function Navigation() {
               <Link to="/">Anasayfa</Link>
             </li>
             <li>
-              <Link to="/about">Hakkımızda</Link>
+              <Link to="/products">Ürünlerimiz</Link>
             </li>
             <li>
-              <Link to="/products">Ürünlerimiz</Link>
+              <Link to="/about">Hakkımızda</Link>
             </li>
           </ul>
         </nav>
@@ -41,7 +41,7 @@ function Navigation() {
       <div className="nav-center">
         <Image
           objectFit="cover"
-          mr="10"
+          mr="auto"
           boxSize="400px"
           src={companyLogo}
           alt="Logo"
