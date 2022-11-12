@@ -60,3 +60,11 @@ export const userLogin = async (input) => {
   );
   return data;
 };
+
+export const userOrder = async (input) => {
+  const { data } = await axios.post(
+    `http://localhost:4000/order`,
+    input
+  );
+  return data;
+};
