@@ -5,9 +5,7 @@ import {
   Box,
   FormControl,
   FormLabel,
-  Heading,
   Input,
-  Divider,
   Button,
   Alert
 } from "@chakra-ui/react";
@@ -15,6 +13,7 @@ import { useFormik } from "formik";
 import validationSchema from "./validations";
 import { userRegister } from "../../api";
 import {useAuth} from "../../context/AuthContext"
+import { Divider } from 'antd';
 
 function Register() {
   const {login} = useAuth();
@@ -46,10 +45,7 @@ function Register() {
     <div>
       <Flex align="center" justifyContent="center">
         <Box pt="10" w="50%">
-          <Box align="center">
-            <Heading>Kaydol</Heading>
-          </Box>
-          <Divider mt="5" mb="5" />
+          <Divider style={{fontSize: "40px", borderColor: "black" }}>Kaydol</Divider>
           <Box my={5}>
 						{formik.errors.general && (
 							<Alert status="error">{formik.errors.general}</Alert>

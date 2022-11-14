@@ -9,6 +9,7 @@ import { QueryClient, QueryClientProvider } from "react-query";
 import { ReactQueryDevtools } from "react-query/devtools";
 import { AuthProvider } from "./context/AuthContext";
 import { BasketProvider } from "./context/BasketContext";
+import 'antd/dist/antd.css'
 
 const queryClient = new QueryClient({
   defaultOptions: {
