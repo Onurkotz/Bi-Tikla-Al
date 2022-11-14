@@ -14,33 +14,39 @@ import ProtectedRoute from "./components/ProtectedRoute/ProtectedRoute";
 import AdminHome from "./components/Admin/AdminHome/AdminHome";
 import ProtectedRouteAdmin from "./components/Admin/ProtectedRouteAdmin/ProtectedRouteAdmin";
 
-
-import {useAuth} from "./context/AuthContext"
+import { useAuth } from "./context/AuthContext";
 
 function App() {
+  const { user } = useAuth();
 
- const {loggedIn, user} = useAuth();
-  
   return (
     <div>
       <Router>
-      <Navigation />
-        
-        <Routes>
-          <Route path="/" element={<Home />} exact />
-          <Route path="/about" element={<About />} />
-          <Route path="/products" element={<Products />} />
-          <Route path="/products/:id" element={<ProductsDetail />} />
-          <Route path="/auth/register" element={<Register />} />
-          <Route path="/auth/login" element={<Login />} />
-          <Route element={<ProtectedRoute />}>
-            <Route path="/auth/profile" element={<Profile />} />
-            <Route path="/auth/profile/basket" element={<Basket />} />
-          </Route>
-          <Route element={<ProtectedRouteAdmin />}>
-            <Route path="/admin" element={<AdminHome />} admin={true} />
-          </Route>
-        </Routes>
+        {user?.role !== "admin" ? (
+          <>
+            <Navigation />
+            <Routes>
+              <Route path="/" element={<Home />} exact />
+              <Route path="/about" element={<About />} />
+              <Route path="/products" element={<Products />} />
+              <Route path="/products/:id" element={<ProductsDetail />} />
+              <Route path="/auth/register" element={<Register />} />
+              <Route path="/auth/login" element={<Login />} />
+              <Route element={<ProtectedRoute />}>
+                <Route path="/auth/profile" element={<Profile />} />
+                <Route path="/auth/profile/basket" element={<Basket />} />
+              </Route>
+            </Routes>
+          </>
+        ) : (
+          <>
+            <Routes>
+              <Route element={<ProtectedRouteAdmin />}>
+                <Route path="/admin" element={<AdminHome />} admin={true} />
+              </Route>
+            </Routes>
+          </>
+        )}
       </Router>
     </div>
   );
