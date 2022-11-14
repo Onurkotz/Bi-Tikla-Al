@@ -1,5 +1,5 @@
 import React from "react";
-import {useNavigate} from "react-router-dom"
+import { useNavigate } from "react-router-dom";
 import {
   Flex,
   Box,
@@ -7,18 +7,18 @@ import {
   FormLabel,
   Input,
   Button,
-  Alert
+  Alert,
 } from "@chakra-ui/react";
 import { useFormik } from "formik";
 import validationSchema from "./validations";
 import { userRegister } from "../../api";
-import {useAuth} from "../../context/AuthContext"
-import { Divider } from 'antd';
+import { useAuth } from "../../context/AuthContext";
+import { Divider } from "antd";
 
 function Register() {
-  const {login} = useAuth();
+  const { login } = useAuth();
   const navigate = useNavigate();
-  
+
   const formik = useFormik({
     initialValues: {
       email: "",
@@ -34,7 +34,9 @@ function Register() {
         });
         console.log(responseRegister);
         login(responseRegister);
-        navigate("../auth/profile")
+        responseRegister.user.role === "user"
+          ? navigate("../auth/profile")
+          : navigate("../admin");
       } catch (error) {
         bag.setErrors({ general: error.response.data.message });
       }
@@ -45,12 +47,14 @@ function Register() {
     <div>
       <Flex align="center" justifyContent="center">
         <Box pt="10" w="50%">
-          <Divider style={{fontSize: "40px", borderColor: "black" }}>Kaydol</Divider>
+          <Divider style={{ fontSize: "40px", borderColor: "black" }}>
+            Kaydol
+          </Divider>
           <Box my={5}>
-						{formik.errors.general && (
-							<Alert status="error">{formik.errors.general}</Alert>
-						)}
-					</Box>
+            {formik.errors.general && (
+              <Alert status="error">{formik.errors.general}</Alert>
+            )}
+          </Box>
           <Box align="center">
             <form onSubmit={formik.handleSubmit}>
               <FormControl>

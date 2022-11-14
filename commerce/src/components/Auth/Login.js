@@ -13,7 +13,7 @@ import { useFormik } from "formik";
 import { userLogin } from "../../api";
 import validationSchema from "./validationsLogin";
 import { useAuth } from "../../context/AuthContext";
-import { Divider } from 'antd';
+import { Divider } from "antd";
 
 function Login() {
   const navigate = useNavigate();
@@ -33,7 +33,9 @@ function Login() {
         });
         console.log(responseLogin);
         login(responseLogin);
-        navigate("../auth/profile");
+        responseLogin.user.role === "user"
+          ? navigate("../auth/profile")
+          : navigate("../admin");
       } catch (error) {
         bag.setErrors({ general: error.response.data.message });
       }
@@ -44,7 +46,9 @@ function Login() {
     <div>
       <Flex align="center" justifyContent="center">
         <Box pt="10" w="50%">
-          <Divider style={{fontSize: "40px", borderColor: "black"}}>Giriş Yap</Divider>
+          <Divider style={{ fontSize: "40px", borderColor: "black" }}>
+            Giriş Yap
+          </Divider>
           <Box my={5}>
             {formik.errors.general && (
               <Alert status="error">{formik.errors.general}</Alert>

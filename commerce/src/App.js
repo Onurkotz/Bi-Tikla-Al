@@ -9,14 +9,23 @@ import ProductsDetail from "./components/Products/ProductsDetail";
 import Register from "./components/Auth/Register";
 import Login from "./components/Auth/Login";
 import Profile from "./components/Auth/Profile";
-import Basket from "./components/Auth/Basket"
-import ProtectedRoute from "./components/ProtectedRoute/ProtectedRoute"
+import Basket from "./components/Auth/Basket";
+import ProtectedRoute from "./components/ProtectedRoute/ProtectedRoute";
+import AdminHome from "./components/Admin/AdminHome/AdminHome";
+import ProtectedRouteAdmin from "./components/Admin/ProtectedRouteAdmin/ProtectedRouteAdmin";
+
+
+import {useAuth} from "./context/AuthContext"
 
 function App() {
+
+ const {loggedIn, user} = useAuth();
+  
   return (
     <div>
       <Router>
-        <Navigation />  
+      <Navigation />
+        
         <Routes>
           <Route path="/" element={<Home />} exact />
           <Route path="/about" element={<About />} />
@@ -25,9 +34,12 @@ function App() {
           <Route path="/auth/register" element={<Register />} />
           <Route path="/auth/login" element={<Login />} />
           <Route element={<ProtectedRoute />}>
-						<Route path="/auth/profile" element={<Profile />} />
+            <Route path="/auth/profile" element={<Profile />} />
             <Route path="/auth/profile/basket" element={<Basket />} />
-					</Route>
+          </Route>
+          <Route element={<ProtectedRouteAdmin />}>
+            <Route path="/admin" element={<AdminHome />} admin={true} />
+          </Route>
         </Routes>
       </Router>
     </div>
