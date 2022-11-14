@@ -2,12 +2,12 @@ import React from 'react'
 import AdminNavigation from  "../AdminNavigation/AdminNavigation"
 
 
-function AdminNewProduct() {
+function AdminOrder() {
   return (
     <div>
-      <AdminNavigation />
+     < AdminNavigation />
     </div>
   )
 }
 
-export default AdminNewProduct
+export default AdminOrder

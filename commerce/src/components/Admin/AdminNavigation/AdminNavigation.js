@@ -40,7 +40,7 @@ function AdminNavigation() {
           <Link to="/admin">Anasayfa</Link>
         </Box>
         <Box mr="5">
-          <Link to="/admin/products">Ürünler</Link>
+          <Link to="/admin/order">Siparişler</Link>
         </Box>
         <Box mr="5">
           <Link to="/admin/new">Yeni Ürün Ekle</Link>

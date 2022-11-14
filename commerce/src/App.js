@@ -13,6 +13,10 @@ import Basket from "./components/Auth/Basket";
 import ProtectedRoute from "./components/ProtectedRoute/ProtectedRoute";
 import AdminHome from "./components/Admin/AdminHome/AdminHome";
 import ProtectedRouteAdmin from "./components/Admin/ProtectedRouteAdmin/ProtectedRouteAdmin";
+import AdminOrder from "./components/Admin/AdminOrder/AdminOrder";
+import AdminNewProduct from "./components/Admin/AdminNewProduct/AdminNewProduct";
+
+
 
 import { useAuth } from "./context/AuthContext";
 
@@ -42,7 +46,9 @@ function App() {
           <>
             <Routes>
               <Route element={<ProtectedRouteAdmin />}>
-                <Route path="/admin" element={<AdminHome />} admin={true} />
+                <Route path="/admin" element={<AdminHome />} />
+                <Route path="/admin/order" element={<AdminOrder />} />
+                <Route path="/admin/new" element={<AdminNewProduct />} />
               </Route>
             </Routes>
           </>
