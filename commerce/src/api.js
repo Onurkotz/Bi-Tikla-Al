@@ -54,16 +54,35 @@ export const userLogout = async () => {
 };
 
 export const userLogin = async (input) => {
-  const { data } = await axios.post(
-    `http://localhost:4000/auth/login`,
-    input
-  );
+  const { data } = await axios.post(`http://localhost:4000/auth/login`, input);
   return data;
 };
 
 export const userOrder = async (input) => {
-  const { data } = await axios.post(
-    `http://localhost:4000/order`,
+  const { data } = await axios.post(`http://localhost:4000/order`, input);
+  return data;
+};
+
+export const adminOrder = async () => {
+  const { data } = await axios.get(`http://localhost:4000/order`);
+  return data;
+};
+
+export const deleteProduct = async (product_id) => {
+  const { data } = await axios.delete(
+    `http://localhost:4000/order/${product_id}`
+  );
+  return data;
+};
+
+export const createProduct = async (input) => {
+  const { data } = await axios.post(`http://localhost:4000/products`, input);
+  return data;
+};
+
+export const updateProduct = async (input, product_id) => {
+  const { data } = await axios.put(
+    `http://localhost:4000/products/${product_id}`,
     input
   );
   return data;
