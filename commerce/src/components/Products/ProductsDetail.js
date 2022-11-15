@@ -1,8 +1,9 @@
 import React from "react";
+import Navigation from "../Navigation/Navigation";
 import { useQuery } from "react-query";
 import { product } from "../../api";
 import { useParams, Link } from "react-router-dom";
-import { Grid, GridItem, Button, Text } from "@chakra-ui/react";
+import { Box, Grid, GridItem, Button, Text } from "@chakra-ui/react";
 import ImageGallery from "react-image-gallery";
 import Loading from "../Loading/Loading";
 import { useBasket } from "../../context/BasketContext";
@@ -25,7 +26,9 @@ function ProductsDetail() {
 
   const images = data.photos.map((url) => ({ original: url }));
   return (
-    <div>
+    <Box>
+      <Navigation />
+
       <Grid
         h="800px"
         templateRows="repeat(3, 0fr)"
@@ -95,7 +98,7 @@ function ProductsDetail() {
           </Text>
         </GridItem>
       </Grid>
-    </div>
+    </Box>
   );
 }
 

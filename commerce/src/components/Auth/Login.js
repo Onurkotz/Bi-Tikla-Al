@@ -1,4 +1,5 @@
 import React from "react";
+import Navigation from "../Navigation/Navigation";
 import { useNavigate } from "react-router-dom";
 import {
   Flex,
@@ -44,6 +45,8 @@ function Login() {
 
   return (
     <div>
+      <Navigation />
+
       <Flex align="center" justifyContent="center">
         <Box pt="10" w="50%">
           <Divider style={{ fontSize: "40px", borderColor: "black" }}>

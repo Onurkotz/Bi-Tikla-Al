@@ -1,7 +1,6 @@
 import React from "react";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 
-import Navigation from "./components/Navigation/Navigation";
 import Home from "./components/Home/Home";
 import About from "./components/About/About";
 import Products from "./components/Products/Products";
@@ -16,43 +15,27 @@ import ProtectedRouteAdmin from "./components/Admin/ProtectedRouteAdmin/Protecte
 import AdminOrder from "./components/Admin/AdminOrder/AdminOrder";
 import AdminNewProduct from "./components/Admin/AdminNewProduct/AdminNewProduct";
 
-
-
-import { useAuth } from "./context/AuthContext";
-
 function App() {
-  const { user } = useAuth();
-
   return (
     <div>
       <Router>
-        {user?.role !== "admin" ? (
-          <>
-            <Navigation />
-            <Routes>
-              <Route path="/" element={<Home />} exact />
-              <Route path="/about" element={<About />} />
-              <Route path="/products" element={<Products />} />
-              <Route path="/products/:id" element={<ProductsDetail />} />
-              <Route path="/auth/register" element={<Register />} />
-              <Route path="/auth/login" element={<Login />} />
-              <Route element={<ProtectedRoute />}>
-                <Route path="/auth/profile" element={<Profile />} />
-                <Route path="/auth/profile/basket" element={<Basket />} />
-              </Route>
-            </Routes>
-          </>
-        ) : (
-          <>
-            <Routes>
-              <Route element={<ProtectedRouteAdmin />}>
-                <Route path="/admin" element={<AdminHome />} />
-                <Route path="/admin/order" element={<AdminOrder />} />
-                <Route path="/admin/new" element={<AdminNewProduct />} />
-              </Route>
-            </Routes>
-          </>
-        )}
+        <Routes>
+          <Route path="/" element={<Home />} exact />
+          <Route path="/about" element={<About />} />
+          <Route path="/products" element={<Products />} />
+          <Route path="/products/:id" element={<ProductsDetail />} />
+          <Route path="/auth/register" element={<Register />} />
+          <Route path="/auth/login" element={<Login />} />
+          <Route element={<ProtectedRoute />}>
+            <Route path="/auth/profile" element={<Profile />} />
+            <Route path="/auth/profile/basket" element={<Basket />} />
+          </Route>
+          <Route element={<ProtectedRouteAdmin />}>
+            <Route path="/admin" element={<AdminHome />} />
+            <Route path="/admin/order" element={<AdminOrder />} />
+            <Route path="/admin/new" element={<AdminNewProduct />} />
+          </Route>
+        </Routes>
       </Router>
     </div>
   );

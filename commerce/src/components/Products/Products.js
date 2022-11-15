@@ -1,5 +1,6 @@
 import React from "react";
-import { Grid, Button, Flex } from "@chakra-ui/react";
+import { Box, Grid, Button, Flex } from "@chakra-ui/react";
+import Navigation from "../Navigation/Navigation";
 import Card from "./Card";
 import Loading from "../Loading/Loading";
 import { useInfiniteQuery } from "react-query";
@@ -27,7 +28,9 @@ function Products() {
   if (status === "error") return error;
 
   return (
-    <div>
+    <Box>
+      <Navigation />
+
       <Grid templateColumns="repeat(3, 1fr)" gap={6} p={10}>
         {/* {data.map((item, key) => (
         <Card key={key} item={item} />
@@ -62,7 +65,7 @@ function Products() {
         </Button>
       </Flex>
       <div>{isFetching && !isFetchingNextPage ? "Fetching..." : null}</div>
-    </div>
+    </Box>
   );
 }
 
