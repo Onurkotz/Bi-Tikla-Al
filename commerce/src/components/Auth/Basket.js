@@ -1,5 +1,7 @@
 import React from "react";
 import Navigation from "../Navigation/Navigation";
+import { SmileTwoTone } from "@ant-design/icons";
+import { Result } from "antd";
 import { Link } from "react-router-dom";
 import BasketTotal from "./BasketTotal";
 import { useBasket } from "../../context/BasketContext";
@@ -14,7 +16,6 @@ import {
   TableContainer,
   Image,
   Button,
-  Text,
 } from "@chakra-ui/react";
 
 function Basket() {
@@ -26,9 +27,17 @@ function Basket() {
 
       <Box p="20">
         {items.length === 0 && (
-          <Text fontSize="30px" fontWeight="semibold" textAlign="center">
-            Sepetiniz boş.
-          </Text>
+          <Result
+            icon={<SmileTwoTone />}
+            title="Sepetiniz boş!"
+            extra={
+              <Link to="/products">
+                <Button w="150px" bg="#42ec6b">
+                  Alışverişe Başla
+                </Button>
+              </Link>
+            }
+          />
         )}
         {items.length > 0 && (
           <>

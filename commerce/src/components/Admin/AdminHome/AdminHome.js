@@ -1,7 +1,7 @@
 import { useMemo } from "react";
 import { useQuery, useMutation, useQueryClient } from "@tanstack/react-query";
 import { getAllProducts, deleteProduct } from "../../../api";
-import { Box, Button } from "@chakra-ui/react";
+import { Box, Button, useToast } from "@chakra-ui/react";
 import { Link } from "react-router-dom";
 import AdminNavigation from "../AdminNavigation/AdminNavigation";
 import Loading from "../../Loading/Loading";
@@ -10,16 +10,13 @@ import { Space, Table, Popconfirm } from "antd";
 
 function AdminHome() {
   const queryClient = useQueryClient();
-  
-  const { isLoading, isError, data } = useQuery(
-    ["admin:products"],
-    getAllProducts
-  );
+
+  const { data, status, error } = useQuery(["admin:products"], getAllProducts);
 
   const deleteMutation = useMutation(deleteProduct, {
     onSuccess: () => queryClient.invalidateQueries("admin:products"),
   });
-
+  const toast = useToast();
   const columns = useMemo(() => {
     return [
       {
@@ -50,7 +47,16 @@ function AdminHome() {
               onConfirm={() => {
                 deleteMutation.mutate(record._id, {
                   onSuccess: () => {
-                    console.log("Deleted.");
+                    toast({
+                      title: "Ürün silindi!",
+                      description: `${record.title} başarıyla silindi.`,
+                      status: "success",
+                      duration: 9000,
+                      isClosable: true,
+                      containerStyle: {
+                        fontSize: "20px",
+                      },
+                    });
                   },
                 });
               }}
@@ -63,16 +69,39 @@ function AdminHome() {
     ];
   }, []);
 
-  if (isLoading) return <Loading />;
-  if (isError) return "An error catched.";
-  console.log(data);
+  if (status === "loading") return <Loading />;
+  if (status === "error") return error;
 
   return (
     <Box>
       <AdminNavigation />
 
       <Box mt="10" p="15px">
-        <Table columns={columns} dataSource={data} rowKey="_id" />;
+        <Table
+          columns={columns}
+          dataSource={data}
+          rowKey="_id"
+          pagination={false}
+        />
+
+        {/* <Flex mt="10" mb="20" justifyContent="center">
+          <Button
+            w="120px"
+            bg="#42ec6b"
+            _hover={{ bg: "red.300" }}
+            onClick={() => fetchNextPage()}
+            disabled={!hasNextPage || isFetchingNextPage}
+            isLoading={isFetchingNextPage} // Yükleme çemberinin görünmesi için Chakra butonunda geliyor.
+            _focus={{ bg: "red" }}
+          >
+            {isFetchingNextPage
+              ? "Yükleniyor"
+              : hasNextPage
+              ? "Sonraki Sayfa"
+              : "Gösterecek ürün kalmadı."}
+          </Button>
+        </Flex>
+        <div>{isFetching && !isFetchingNextPage ? "Fetching..." : null}</div> */}
       </Box>
     </Box>
   );

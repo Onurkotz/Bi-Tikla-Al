@@ -36,7 +36,7 @@ function Products() {
         <Card key={key} item={item} />
       ))} */}
         {
-          // pages adı altında geleceğü için önce sayfaları sonra da ürünleri mapledim.
+          // pages adı altında geleceği için önce sayfaları sonra da ürünleri mapledim.
           data.pages.map((group, i) => (
             <React.Fragment key={i}>
               {group.map((item) => (
