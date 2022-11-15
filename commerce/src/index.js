@@ -5,11 +5,11 @@ import "./reset.css";
 import App from "./App";
 import reportWebVitals from "./reportWebVitals";
 import { ChakraProvider } from "@chakra-ui/react";
-import { QueryClient, QueryClientProvider } from "react-query";
-import { ReactQueryDevtools } from "react-query/devtools";
+import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
+import { ReactQueryDevtools } from '@tanstack/react-query-devtools'
 import { AuthProvider } from "./context/AuthContext";
 import { BasketProvider } from "./context/BasketContext";
-import 'antd/dist/antd.css'
+import 'antd/dist/antd.css';
 
 const queryClient = new QueryClient({
   defaultOptions: {

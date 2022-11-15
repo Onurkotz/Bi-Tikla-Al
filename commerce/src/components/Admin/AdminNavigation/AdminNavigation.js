@@ -37,7 +37,7 @@ function AdminNavigation() {
       </Box>
       <Box display="flex" fontSize="20px">
         <Box mr="5">
-          <Link to="/admin">Anasayfa</Link>
+          <Link to="/admin">Ürünler</Link>
         </Box>
         <Box mr="5">
           <Link to="/admin/order">Siparişler</Link>

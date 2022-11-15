@@ -70,7 +70,7 @@ export const adminOrder = async () => {
 
 export const deleteProduct = async (product_id) => {
   const { data } = await axios.delete(
-    `http://localhost:4000/order/${product_id}`
+    `http://localhost:4000/products/${product_id}`
   );
   return data;
 };

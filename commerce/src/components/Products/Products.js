@@ -3,7 +3,7 @@ import { Box, Grid, Button, Flex } from "@chakra-ui/react";
 import Navigation from "../Navigation/Navigation";
 import Card from "./Card";
 import Loading from "../Loading/Loading";
-import { useInfiniteQuery } from "react-query";
+import { useInfiniteQuery } from "@tanstack/react-query";
 import { getAllProducts } from "../../api";
 
 function Products() {
@@ -15,7 +15,7 @@ function Products() {
     isFetching,
     isFetchingNextPage,
     status,
-  } = useInfiniteQuery("products", getAllProducts, {
+  } = useInfiniteQuery(["products"], getAllProducts, {
     getNextPageParam: (lastPage, pages) => {
       const morePage = lastPage?.length === 6;
       if (!morePage) {

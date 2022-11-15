@@ -1,6 +1,6 @@
 import React from "react";
 import Navigation from "../Navigation/Navigation";
-import { useQuery } from "react-query";
+import { useQuery } from "@tanstack/react-query";
 import { product } from "../../api";
 import { useParams, Link } from "react-router-dom";
 import { Box, Grid, GridItem, Button, Text } from "@chakra-ui/react";
