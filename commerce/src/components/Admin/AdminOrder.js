@@ -1,5 +1,5 @@
 import React from 'react'
-import AdminNavigation from  "../AdminNavigation/AdminNavigation"
+import AdminNavigation from  "./AdminNavigation"
 
 
 function AdminOrder() {

@@ -1,8 +1,8 @@
 import React from "react";
-import companyLogo from "../../../companyLogo.png";
+import companyLogo from "../../companyLogo.png";
 import { Link, useNavigate } from "react-router-dom";
 import { Box, Image, Button, Stack } from "@chakra-ui/react";
-import { useAuth } from "../../../context/AuthContext";
+import { useAuth } from "../../context/AuthContext";
 
 
 function AdminNavigation() {

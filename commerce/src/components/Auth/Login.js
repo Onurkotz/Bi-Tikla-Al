@@ -44,7 +44,7 @@ function Login() {
   });
 
   return (
-    <div>
+    <Box>
       <Navigation />
 
       <Flex align="center" justifyContent="center">
@@ -93,7 +93,7 @@ function Login() {
           </Box>
         </Box>
       </Flex>
-    </div>
+    </Box>
   );
 }
 

@@ -10,10 +10,11 @@ import Login from "./components/Auth/Login";
 import Profile from "./components/Auth/Profile";
 import Basket from "./components/Auth/Basket";
 import ProtectedRoute from "./components/ProtectedRoute/ProtectedRoute";
-import AdminHome from "./components/Admin/AdminHome/AdminHome";
-import ProtectedRouteAdmin from "./components/Admin/ProtectedRouteAdmin/ProtectedRouteAdmin";
-import AdminOrder from "./components/Admin/AdminOrder/AdminOrder";
-import AdminNewProduct from "./components/Admin/AdminNewProduct/AdminNewProduct";
+import AdminHome from "./components/Admin/AdminHome";
+import ProtectedRouteAdmin from "./components/Admin/ProtectedRouteAdmin";
+import AdminOrder from "./components/Admin/AdminOrder";
+import AdminNewProduct from "./components/Admin/AdminNewProduct";
+import AdminEditProduct from "./components/Admin/AdminEditProduct";
 
 function App() {
   return (
@@ -32,7 +33,7 @@ function App() {
           </Route>
           <Route element={<ProtectedRouteAdmin />}>
             <Route path="/admin" element={<AdminHome />} />
-            <Route path="/admin/products/:id" element={<AdminHome />} />
+            <Route path="/admin/products/:id" element={<AdminEditProduct />} />
             <Route path="/admin/order" element={<AdminOrder />} />
             <Route path="/admin/new" element={<AdminNewProduct />} />
           </Route>

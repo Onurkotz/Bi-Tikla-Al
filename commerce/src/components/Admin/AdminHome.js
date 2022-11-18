@@ -1,10 +1,10 @@
 import { useMemo } from "react";
 import { useQuery, useMutation, useQueryClient } from "@tanstack/react-query";
-import { getAllProducts, deleteProduct } from "../../../api";
+import { getAllProducts, deleteProduct } from "../../api";
 import { Box, Button, useToast } from "@chakra-ui/react";
 import { Link } from "react-router-dom";
-import AdminNavigation from "../AdminNavigation/AdminNavigation";
-import Loading from "../../Loading/Loading";
+import AdminNavigation from "./AdminNavigation";
+import Loading from "../Loading/Loading";
 
 import { Space, Table, Popconfirm } from "antd";
 
@@ -84,24 +84,6 @@ function AdminHome() {
           pagination={false}
         />
 
-        {/* <Flex mt="10" mb="20" justifyContent="center">
-          <Button
-            w="120px"
-            bg="#42ec6b"
-            _hover={{ bg: "red.300" }}
-            onClick={() => fetchNextPage()}
-            disabled={!hasNextPage || isFetchingNextPage}
-            isLoading={isFetchingNextPage} // Yükleme çemberinin görünmesi için Chakra butonunda geliyor.
-            _focus={{ bg: "red" }}
-          >
-            {isFetchingNextPage
-              ? "Yükleniyor"
-              : hasNextPage
-              ? "Sonraki Sayfa"
-              : "Gösterecek ürün kalmadı."}
-          </Button>
-        </Flex>
-        <div>{isFetching && !isFetchingNextPage ? "Fetching..." : null}</div> */}
       </Box>
     </Box>
   );
