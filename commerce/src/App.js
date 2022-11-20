@@ -15,6 +15,7 @@ import ProtectedRouteAdmin from "./components/Admin/ProtectedRouteAdmin";
 import AdminOrder from "./components/Admin/AdminOrder";
 import AdminNewProduct from "./components/Admin/AdminNewProduct";
 import AdminEditProduct from "./components/Admin/AdminEditProduct";
+import Footer from "./components/Footer/Footer"
 
 function App() {
   return (
@@ -38,6 +39,7 @@ function App() {
             <Route path="/admin/new" element={<AdminNewProduct />} />
           </Route>
         </Routes>
+        <Footer />
       </Router>
     </div>
   );
