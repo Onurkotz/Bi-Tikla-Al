@@ -25,7 +25,7 @@ function Login() {
       email: "",
       password: "",
     },
-    validationSchema,
+    validaitonSchema: { validationSchema },
     onSubmit: async (values, bag) => {
       try {
         const responseLogin = await userLogin({
@@ -34,6 +34,7 @@ function Login() {
         });
         console.log(responseLogin);
         login(responseLogin);
+
         responseLogin.user.role === "user"
           ? navigate("../auth/profile")
           : navigate("../admin");
@@ -42,7 +43,7 @@ function Login() {
       }
     },
   });
-
+ 
   return (
     <Box>
       <Navigation />
